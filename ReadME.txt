@@ -1,1 +1,0 @@
-This is the main branch of repo. Another task have parallel branches with pull requests.
