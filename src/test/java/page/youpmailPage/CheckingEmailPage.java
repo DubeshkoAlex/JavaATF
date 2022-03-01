@@ -37,6 +37,7 @@ public class CheckingEmailPage extends AbstractPage {
         int tryCount = 0;
         while (costInTheLetter.size()==0 && tryCount<5){
             logger.info("try to refresh number: " + tryCount);
+            logger.info("costInTheLetter.size() == " + costInTheLetter.size());
             driver.navigate().refresh();
             driver.switchTo().frame("ifmail");
             tryCount++;
