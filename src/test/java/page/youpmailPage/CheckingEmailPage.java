@@ -2,13 +2,17 @@ package page.youpmailPage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AbstractPage;
 import utils.StringUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CheckingEmailPage extends AbstractPage {
@@ -18,8 +22,9 @@ public class CheckingEmailPage extends AbstractPage {
 
     @FindBy(id = "refresh")
     private WebElement refreshButton;
-    @FindBy(xpath = "//table//td[4]")
-    private List<WebElement> costInTheLetter;
+//    @FindBy(xpath = "//table//td[4]")
+//    private List<WebElement> costInTheLetter;
+    private final By costFromTheLetterLocator = By.xpath("//table//td[4]");
 
 
     public CheckingEmailPage(WebDriver driver) {
@@ -34,22 +39,19 @@ public class CheckingEmailPage extends AbstractPage {
     }
 
     public String getCost(){
+        List<WebElement> costFromTheLetter;
         int tryCount = 0;
-        while (costInTheLetter.size()==0 && tryCount<5){
+        do{
+            costFromTheLetter = driver.findElements(costFromTheLetterLocator);
             logger.info("try to refresh number: " + tryCount);
-            logger.info("costInTheLetter.size() == " + costInTheLetter.size());
+            logger.info("costInTheLetter.size() == " + costFromTheLetter.size());
             driver.navigate().refresh();
             driver.switchTo().frame("ifmail");
             tryCount++;
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        }while (costFromTheLetter.size()==0 && tryCount<5);
         logger.info("all tryings are done, try ro get cost from the letter");
-        logger.info("Cost in the letter text: " + costInTheLetter.get(0).getText());
-        return StringUtils.getValue(costInTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
+        logger.info("Cost in the letter text: " + costFromTheLetter.get(0).getText());
+        return StringUtils.getValue(costFromTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
     }
 
 }
