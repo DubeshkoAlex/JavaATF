@@ -28,9 +28,9 @@ public class EmailBlock extends AbstractElement {
         PageFactory.initElements(this.driver,this);
     }
 
-    public EmailBlock putDataIntoEmailBlock(){
+    public EmailBlock putDataIntoEmailBlock(String emailAddress){
         driver.switchTo().frame(0).switchTo().frame("myFrame");
-        emailInput.sendKeys(Keys.CONTROL + "V");
+        emailInput.sendKeys(emailAddress);
         return this;
     }
 

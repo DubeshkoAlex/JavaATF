@@ -28,7 +28,8 @@ public class CheckingEmailPage extends AbstractPage {
     private WebElement refreshButton;
     @FindBy(xpath = "//table//td[4]")
     private List<WebElement> costInTheLetter;
-//    private final By costFromTheLetterLocator = By.xpath("//table//td[4]");
+    @FindBy(xpath = "//div[@class='bname']")
+    private WebElement emailAddress;
 
 
     public CheckingEmailPage(WebDriver driver) {
@@ -42,6 +43,10 @@ public class CheckingEmailPage extends AbstractPage {
         return this;
     }
 
+    public String getEmailAddress(){
+        return emailAddress.getText();
+    }
+
     public String getCost(){
         int tryCount = 0;
         do{
@@ -50,7 +55,7 @@ public class CheckingEmailPage extends AbstractPage {
             tryCount++;
             logger.info("refresh number: " + tryCount);
             logger.info("costInTheLetter.size()==" + costInTheLetter.size());
-        }while (costInTheLetter.size()==0 && tryCount<15);
+        }while (costInTheLetter.size()==0 && tryCount<5);
         logger.info("Final costInTheLetter.size()==" + costInTheLetter.size());
         return StringUtils.getValue(costInTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
     }

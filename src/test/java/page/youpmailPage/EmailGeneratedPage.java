@@ -20,6 +20,7 @@ public class EmailGeneratedPage extends AbstractPage {
     @FindBy(xpath = "//button[@onclick=\"egengo();\"]")
     private WebElement checkEmail;
 
+
     public EmailGeneratedPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(this.driver,this);
