@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import page.AbstractElement;
 import utils.Scroller;
-import utils.TabManager;
 
 
 public class EmailBlock extends AbstractElement {
@@ -37,7 +36,6 @@ public class EmailBlock extends AbstractElement {
 
     public EstimateBlock sendEmail(){
         scroller.scrollToElement(emailInput);
-        //TabManager.scrollToElement(emailInput);
         sendEmailButton.click();
         logger.info("email was sent");
         return new EstimateBlock(driver);

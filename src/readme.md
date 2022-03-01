@@ -1,3 +1,6 @@
+###Run with command:
+mvn -Dbrowser=chrome -Denvironment=qa -Dsurefire.suiteXmlFiles=src\test\resources\testng-smoke.xml clean test
+
 #Practical Task
 Задача - построить фреймворк для автоматизации Hardcore задания из курса WebDriver.
 
