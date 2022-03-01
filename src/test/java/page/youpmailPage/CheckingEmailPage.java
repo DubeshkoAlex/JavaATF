@@ -44,17 +44,13 @@ public class CheckingEmailPage extends AbstractPage {
 
     public String getCost(){
         int tryCount = 0;
-        while (tryCount<5){
+        do{
             driver.navigate().refresh();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            logger.info("refresh: " + tryCount);
+            driver.switchTo().frame("ifmail");
             tryCount++;
-        }
-        return "123";  //StringUtils.getValue(costInTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
+        }while (costInTheLetter.size()==0 && tryCount<15);
+
+        return StringUtils.getValue(costInTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
     }
 
 }
