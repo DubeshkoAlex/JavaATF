@@ -2,7 +2,6 @@ package page.cloudGooglePage.calculatorPageElements;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +29,7 @@ public class EmailBlock extends AbstractElement {
 
     public EmailBlock putDataIntoEmailBlock(String emailAddress){
         driver.switchTo().frame(0).switchTo().frame("myFrame");
+        logger.info("Trying to put email: " + emailAddress);
         emailInput.sendKeys(emailAddress);
         return this;
     }

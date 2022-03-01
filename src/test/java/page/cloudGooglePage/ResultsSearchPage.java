@@ -34,7 +34,7 @@ public class ResultsSearchPage extends AbstractPage {
     public PricingCalculatorPage openPricingCalculatorLink(){
         int tryCount = 0;
         while(googleCloudPricingCalculatorLink.size()==0 && tryCount<5){
-            logger.info("try to refresh number: " + tryCount);
+            logger.info("try to refresh number: " + tryCount + "/5");
             logger.info("costInTheLetter.size() == " + googleCloudPricingCalculatorLink.size());
             driver.manage().deleteAllCookies();
             driver.navigate().refresh();

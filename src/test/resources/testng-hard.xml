@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Hard" verbose="1" >
-    <test name="HardcoreTest" >
-        <classes>
-            <class name="tests.HardcoreTest" />
-        </classes>
-    </test>
-</suite>
