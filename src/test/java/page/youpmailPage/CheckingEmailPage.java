@@ -48,8 +48,10 @@ public class CheckingEmailPage extends AbstractPage {
             driver.navigate().refresh();
             driver.switchTo().frame("ifmail");
             tryCount++;
+            logger.info("refresh number: " + tryCount);
+            logger.info("costInTheLetter.size()==" + costInTheLetter.size());
         }while (costInTheLetter.size()==0 && tryCount<15);
-
+        logger.info("Final costInTheLetter.size()==" + costInTheLetter.size());
         return StringUtils.getValue(costInTheLetter.get(0),"(?<=USD\\s)[\\d,.]*");
     }
 
