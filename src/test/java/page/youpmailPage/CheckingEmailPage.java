@@ -41,6 +41,11 @@ public class CheckingEmailPage extends AbstractPage {
             driver.navigate().refresh();
             driver.switchTo().frame("ifmail");
             tryCount++;
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         logger.info("all tryings are done, try ro get cost from the letter");
         logger.info("Cost in the letter text: " + costInTheLetter.get(0).getText());
